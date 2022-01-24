@@ -5,10 +5,10 @@ pipeline {
         jdk "JDK"
     }   
     stages {
-        stage("Code Checkout from GitLab") {
+        stage("Code Checkout from Github") {
             steps {
                 git branch: 'master',
-                    credentialsId: 'gitlab_access_token',
+                    credentialsId: 'github_access_token',
                         url: 'http://your-ip-here:10080/root/test-project.git'
                 }
             }
