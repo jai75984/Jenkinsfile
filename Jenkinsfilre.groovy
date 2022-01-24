@@ -5,10 +5,10 @@ pipeline {
         jdk "JDK"
     }   
     stages {
-        stage("Code Checkout from Github") {
+        stage("Code Checkout from GitLab") {
             steps {
                 git branch: 'master',
-                    credentialsId: 'github_access_token',
+                    credentialsId: 'gitlab_access_token',
                         url: 'http://your-ip-here:10080/root/test-project.git'
                 }
             }
@@ -57,7 +57,7 @@ pipeline {
    } 
         stage('Upload to AWS') {
               steps {
-                  withAWS(region:'ap-south-1',credentials:'wach-jenkins-cred') {
+                  withAWS(region:'us-west-2',credentials:'wach-jenkins-cred') {
                   sh 'echo "Uploading content with AWS creds"'
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'app.py', bucket:'jenkins-s3-bucket-wach')
                     }
